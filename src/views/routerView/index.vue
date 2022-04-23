@@ -23,7 +23,12 @@
           />
         </div>
         <div class="wrapper avatar">
-          <img v-if="address" src="/img/img_default_user_a.png" alt="" />
+          <img
+            v-if="address"
+            src="/img/img_default_user_a.png"
+            alt=""
+            @click="goPage('/personalCenter')"
+          />
           <img v-else src="/img/img_default_user_d.png" alt="" />
         </div>
         <div class="wrapper menu">
@@ -31,7 +36,7 @@
           <div class="menu-item" @click="changenavigationBar('Introduction')">
             Introduction
           </div>
-          <div class="menu-item" @click="goPage('/personalCenter')">
+          <div class="menu-item" @click="changenavigationBar('Roadmap')">
             Roadmap
           </div>
           <div class="menu-item" @click="changenavigationBar('Tokens')">

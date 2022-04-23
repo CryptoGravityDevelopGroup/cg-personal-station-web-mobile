@@ -89,7 +89,8 @@ const timelineDesc = [
         height: 30px;
         opacity: 1;
         background-image: url("/img/ic_roadmap_dot.png");
-        background-size: contain;
+        background-size: 60px;
+        background-position: center;
         background-repeat: no-repeat;
       }
       .u-content {

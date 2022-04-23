@@ -2,9 +2,6 @@
   <div class="home-wrapper">
     <div class="reddme-wrapper">
       <section class="reddme-box"></section>
-      <section class="reddme-box"></section>
-      <section class="reddme-box"></section>
-      <section class="reddme-box"></section>
     </div>
     <div class="button-wrapper">
       <div class="button">Redeem all</div>
