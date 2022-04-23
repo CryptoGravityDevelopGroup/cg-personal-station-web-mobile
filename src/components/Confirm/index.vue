@@ -10,9 +10,10 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, watch } from "vue";
+import { stopMove, beginMove } from "@/utils/utils";
 
-defineProps({
+const props = defineProps({
   visible: {
     type: Boolean,
     required: true,
@@ -28,6 +29,13 @@ const emits = defineEmits(["update:visible"]);
 const onOk = () => {
   emits("update:visible", false);
 };
+
+watch(
+  () => props.visible,
+  (v) => {
+    v ? stopMove() : beginMove();
+  }
+);
 </script>
 
 <style lang="less" scoped>

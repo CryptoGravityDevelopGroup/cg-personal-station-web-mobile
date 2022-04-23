@@ -63,10 +63,11 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import Confirm from "@/components/Confirm/index.vue";
 import { getWeb3 } from "@/utils/web3";
+import { stopMove, beginMove } from "@/utils/utils";
 
 const router = useRouter();
 const web3js = ref();
@@ -114,6 +115,14 @@ onMounted(async () => {
   window.sessionStorage.clear();
   web3js.value = await getWeb3();
 });
+
+watch(
+  () => visible.value,
+  (v) => {
+    console.log(v);
+    v ? stopMove() : beginMove();
+  }
+);
 </script>
 <style lang="less" scoped>
 @import "../home/index.less";
