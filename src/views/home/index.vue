@@ -83,7 +83,7 @@
   />
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 import lottie from "lottie-web";
 import Timeline from "@/components/Timeline/index.vue";
 import Swiper from "@/components/Swiper/index.vue";
@@ -153,10 +153,14 @@ const whatBoxs = [
 ];
 
 const web3js = ref();
+const lottieReactive = reactive({
+  main: null,
+  cwd: null,
+});
 const confirmVisible = ref(false);
 
 const mainLottie = () => {
-  lottie.loadAnimation({
+  lottieReactive.main = lottie.loadAnimation({
     container: document.getElementById("main_gt"),
     renderer: "svg",
     loop: true,
@@ -164,7 +168,7 @@ const mainLottie = () => {
     animationData: mainGtJson,
     assetsPath: "/lottie/main_bg/",
   });
-  lottie.loadAnimation({
+  lottieReactive.cwd = lottie.loadAnimation({
     container: document.getElementById("cwd-mid"),
     renderer: "svg",
     loop: true,
@@ -177,6 +181,13 @@ const mainLottie = () => {
 onMounted(async () => {
   mainLottie();
   web3js.value = await getWeb3();
+});
+
+onUnmounted(() => {
+  lottieReactive.main.destroy();
+  lottieReactive.cwd.destroy();
+  lottieReactive.main = null;
+  lottieReactive.cwd = null;
 });
 </script>
 <style lang="less" scoped>
