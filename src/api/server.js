@@ -1,97 +1,33 @@
 import service from "../utils/request";
 
-/**
- * 冻结接口
- * @param {*} data
- * @returns
- */
-export const freeze = (data) => {
+export const nonce = (data) => {
   return service({
-    url: `/order/freeze`,
+    url: `/user/metamask/nonce`,
     method: "POST",
     data,
   });
 };
 
-/**
- * 出售
- * @param {*} data
- * @returns
- */
-export const sellApi = (data) => {
+export const login = (data) => {
   return service({
-    url: `/order/sell`,
+    url: `/user/metamask/login`,
     method: "POST",
     data,
   });
 };
 
-/**
- * 撤单
- * @param {*} data
- * @returns
- */
-export const undoApi = (data) => {
+export const open = (data) => {
   return service({
-    url: `/order/undo`,
+    url: `/user/purchase/open`,
     method: "POST",
     data,
   });
 };
 
-/**
- * 获取基本信息
- * @returns
- */
-export const getConfig = () => {
+export const drawLots = (data) => {
   return service({
-    url: "/config/base_info",
-  });
-};
-
-/**
- * 订单列表
- * @returns
- */
-export const getOrderList = (data) => {
-  return service({
-    url: "/order/lists",
+    url: `/user/purchase/drawLots`,
     method: "POST",
     data,
-  });
-};
-
-/**
- * 获取订单详情
- * @returns
- */
-export const getOrderApi = (params) => {
-  return service({
-    url: "/order/info",
-    params,
-  });
-};
-
-export const getOrderByIdWriting = (params) => {
-  return service({
-    url: "/order/writing",
-    params,
-  });
-};
-
-export const getOrderByIdReWriting = (params) => {
-  return service({
-    url: "/order/rewriting",
-    params,
-  });
-};
-
-/**
- * 获取收益情况
- * @returns
- */
-export const getRentInfoApi = () => {
-  return service({
-    url: "/order/rent_info",
   });
 };

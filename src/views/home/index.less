@@ -1,0 +1,377 @@
+.home-wrapper {
+  width: 375px;
+  min-height: 100vh;
+  opacity: 1;
+  background: rgba(5, 2, 22, 1);
+  .header {
+    width: 375px;
+    height: 56px;
+    background: rgba(5, 2, 22, 0.4);
+    padding: 14.5px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    .logo {
+      width: 110px;
+      height: 26.94px;
+    }
+    .menu {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .main {
+    width: 375px;
+    height: 224px;
+    position: relative;
+    // background-image: url("/img/bg_main_gt.png");
+    // background-size: contain;
+    // position: relative;
+    .main_gt {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+    .CryptoGravity {
+      width: 159px;
+      height: 36px;
+      color: rgba(255, 255, 255, 1);
+      font-size: 24px;
+      font-weight: 700;
+      font-family: "Helvetica Neue";
+      text-align: left;
+      line-height: 36px;
+      position: absolute;
+      bottom: 8px;
+      z-index: 2;
+      left: 20px;
+    }
+  }
+  .main-wrapper {
+    width: 335px;
+    margin: 0px auto;
+    .sub-title {
+      width: 335px;
+      height: 48px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      font-weight: 400;
+      font-family: "Helvetica Neue";
+      text-align: left;
+      line-height: 24px;
+    }
+    .start-button {
+      width: 93px;
+      height: 44px;
+      border-radius: 10px;
+      opacity: 1;
+      background: linear-gradient(
+        214deg,
+        rgba(92, 187, 255, 1) 0%,
+        rgba(26, 95, 228, 1) 100%
+      );
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 16px;
+      .Start {
+        width: 37px;
+        height: 26px;
+        opacity: 1;
+        color: rgba(255, 255, 255, 1);
+        font-size: 16px;
+        font-weight: 400;
+        font-family: "Source Han Sans CN";
+        text-align: left;
+        line-height: 26px;
+      }
+      .circle-ctrl-right {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .section-wrapper {
+    margin-top: 64px;
+    width: 335px;
+    margin: 0px auto;
+    margin-top: 64px;
+    padding-bottom: 4px;
+    .title {
+      width: 100%;
+      height: 36px;
+      opacity: 1;
+      color: rgba(255, 255, 255, 1);
+      font-size: 24px;
+      font-weight: 700;
+      font-family: "Helvetica Neue";
+      text-align: center;
+      line-height: 36px;
+      margin: 0 auto;
+    }
+    .title-line {
+      width: 94px;
+      height: 2px;
+      opacity: 1;
+      background: rgba(24, 111, 242, 1);
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom: 32px;
+    }
+    .info-box {
+      width: 335px;
+      border-radius: 10px;
+      opacity: 1;
+      background: rgba(9, 11, 34, 0.8);
+      margin-bottom: 20px;
+      padding: 24px 16px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      display: flex;
+      justify-content: space-between;
+      .icon {
+        width: 40px;
+        height: 100%;
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+      .box-content {
+        .title {
+          width: 100%;
+          height: 24px;
+          opacity: 1;
+          color: rgba(255, 255, 255, 1);
+          font-size: 16px;
+          font-weight: 700;
+          font-family: "Helvetica Neue";
+          text-align: left;
+          line-height: 24px;
+        }
+        .content {
+          width: 247px;
+          opacity: 1;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          font-weight: 400;
+          font-family: "Helvetica Neue";
+          text-align: left;
+          line-height: 21px;
+          margin-top: 4px;
+          padding-bottom: 24x;
+        }
+      }
+    }
+  }
+  .what-wrapper {
+    .title-line {
+      margin-bottom: 0px;
+    }
+    .cwd-mid {
+      width: 226px;
+      height: 262px;
+      margin: 0 auto;
+    }
+    .what-box {
+      width: 335px;
+      height: 150px;
+      opacity: 1;
+      background: rgba(5, 2, 22, 1);
+      background-image: url("/img/bg_cwd.png");
+      background-size: 375px 184px;
+      background-repeat: no-repeat;
+      background-position: center;
+      box-shadow: 0 0 20px 0 rgba(84, 176, 252, 0.25);
+      margin-bottom: 20px;
+      padding: 24px 17px;
+      position: relative;
+
+      .bg_cwd {
+        width: 375px;
+        height: 184px;
+        object-fit: cover;
+        position: absolute;
+        z-index: 1;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .title {
+        width: 100%;
+        height: 24px;
+        opacity: 1;
+        color: rgba(24, 111, 242, 1);
+        font-size: 16px;
+        font-weight: 700;
+        font-family: "Helvetica Neue";
+        text-align: center;
+        line-height: 24px;
+      }
+      .content {
+        width: 300px;
+        opacity: 1;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        font-weight: 400;
+        font-family: "Helvetica Neue";
+        text-align: center;
+        line-height: 21px;
+      }
+    }
+  }
+  .tokens-wrapper {
+    width: 100%;
+    padding: 4px 24px;
+    .cwd-mid {
+      height: 200px;
+      background-image: url("/img/img_tokens.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      margin-bottom: 24px;
+    }
+    .desc {
+      .text {
+        width: 100%;
+        height: 24px;
+        opacity: 1;
+        color: rgba(255, 255, 255, 1);
+        font-size: 16px;
+        font-weight: 700;
+        font-family: "Helvetica Neue";
+        text-align: center;
+        line-height: 24px;
+      }
+    }
+  }
+  .teams-wrapper {
+    width: 100%;
+  }
+  .footer {
+    width: 375px;
+    height: 100px;
+    opacity: 1;
+    background: rgba(0, 10, 26, 1);
+    padding: 20px;
+    margin-top: 48px;
+    .icon-wrapper {
+      display: flex;
+      .icon {
+        width: 80px;
+        height: 22px;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        img {
+          width: 22px;
+          height: 22px;
+          opacity: 1;
+        }
+        .text {
+          width: 40px;
+          height: 18px;
+          opacity: 1;
+          color: rgba(255, 255, 255, 1);
+          font-size: 12px;
+          font-weight: 400;
+          font-family: "Source Han Sans CN";
+          text-align: left;
+          line-height: 18px;
+          display: flex;
+          padding-left: 4px;
+        }
+      }
+    }
+    .desc {
+      height: 18px;
+      opacity: 1;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      font-weight: 400;
+      font-family: "Source Han Sans CN";
+      text-align: left;
+      line-height: 18px;
+      margin-top: 20px;
+    }
+  }
+  .modal-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    .modal-content {
+      width: 317px;
+      height: 100%;
+      background: rgba(20, 20, 22, 0.95);
+      margin-left: calc(100% - 317px);
+      position: relative;
+      transition: all 1s;
+      .wrapper {
+        width: 100%;
+        height: 56px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px 16px;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      .avatar {
+        margin: 10px 0;
+        img {
+          width: 52px;
+          height: 52px;
+          border-radius: 38.51852035522461px;
+          opacity: 1;
+          background: rgba(187, 187, 187, 1);
+        }
+      }
+      .menu {
+        display: block;
+
+        height: 456px;
+        .menu-item {
+          padding: 30px 0;
+          height: 86px;
+          opacity: 1;
+          color: rgba(255, 255, 255, 1);
+          font-size: 18px;
+          font-family: "Helvetica Neue";
+          text-align: right;
+          line-height: 26px;
+          border-bottom: 1px solid rgba(112, 112, 112, 0.1);
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+
+      .connent-wallet {
+        width: 285px;
+        height: 40px;
+        border-radius: 10px;
+        opacity: 1;
+        background: rgba(24, 111, 242, 1);
+        display: flex;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+      }
+    }
+  }
+}
