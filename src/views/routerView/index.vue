@@ -13,7 +13,11 @@
       <router-view />
     </div>
 
-    <div class="modal-wrapper" v-if="visible" @click.stop="visible = false">
+    <div
+      class="modal-wrapper"
+      :style="{ right: visible ? 0 : '-100%' }"
+      @click.stop="visible = false"
+    >
       <div class="modal-content" @click.stop>
         <div class="wrapper">
           <img
@@ -88,7 +92,16 @@ const goPage = (path) => {
   router.push(path);
 };
 
-const changenavigationBar = (key) => {
+const changenavigationBar = async (key) => {
+  try {
+    navigation(key);
+  } catch (error) {
+    await router.push("/home");
+    navigation(key);
+  }
+};
+
+const navigation = (key) => {
   const PageId = document.querySelector("#" + key);
   visible.value = false;
   window.scrollTo({

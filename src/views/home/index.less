@@ -308,13 +308,14 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     z-index: 20;
+    transition: right 200ms;
     .modal-content {
       width: 317px;
       height: 100%;
       background: rgba(20, 20, 22, 0.95);
       margin-left: calc(100% - 317px);
       position: relative;
-      transition: all 1s;
+
       .wrapper {
         width: 100%;
         height: 56px;
@@ -322,6 +323,7 @@
         justify-content: flex-end;
         align-items: center;
         padding: 20px 16px;
+        padding-left: 32px;
         img {
           width: 24px;
           height: 24px;
@@ -342,15 +344,15 @@
 
         height: 456px;
         .menu-item {
-          padding: 30px 0;
-          height: 86px;
+          padding: 20px 0;
+          height: 68px;
           opacity: 1;
           color: rgba(255, 255, 255, 1);
           font-size: 18px;
           font-family: "Helvetica Neue";
           text-align: right;
           line-height: 26px;
-          border-bottom: 1px solid rgba(112, 112, 112, 0.1);
+          border-bottom: 2px solid rgba(112, 112, 112, 0.1);
           &:last-child {
             border-bottom: none;
           }
