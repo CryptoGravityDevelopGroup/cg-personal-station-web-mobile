@@ -17,6 +17,11 @@ const routes = [
         component: () => import("../views/personalCenter/index.vue"),
       },
       {
+        path: "/docs",
+        name: "docs",
+        component: () => import("../views/docs/index.vue"),
+      },
+      {
         path: "/:catchAll(.*)",
         component: () => import("../views/NotFound/index.vue"),
       },

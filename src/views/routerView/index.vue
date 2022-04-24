@@ -49,7 +49,7 @@
           <div class="menu-item" @click="changenavigationBar('Teams')">
             Teams
           </div>
-          <div class="menu-item" @click="goPage()">Docs</div>
+          <div class="menu-item" @click="goPage('/docs')">Docs</div>
         </div>
         <div class="connent-wallet" @click.stop="connectWallet">
           {{ address ? address : "Connect wallet" }}
@@ -119,7 +119,6 @@ onMounted(async () => {
 watch(
   () => visible.value,
   (v) => {
-    console.log(v);
     v ? stopMove() : beginMove();
   }
 );

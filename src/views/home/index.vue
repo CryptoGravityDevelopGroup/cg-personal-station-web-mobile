@@ -62,7 +62,7 @@
     <footer class="footer">
       <div class="icon-wrapper">
         <div class="icon">
-          <img src="/img/ic_side_tel.png" alt="" />
+          <img src="/img/ic_side_twitter.png" alt="" />
           <span class="text">Twitter</span>
         </div>
         <div class="icon">
@@ -70,7 +70,7 @@
           <span class="text">discord</span>
         </div>
         <div class="icon">
-          <img src="/img/ic_side_twitter.png" alt="" />
+          <img src="/img/ic_side_tel.png" alt="" />
           <span class="text">Telogram</span>
         </div>
       </div>
