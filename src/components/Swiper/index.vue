@@ -25,7 +25,7 @@
         <div class="title">{{ peopleInfo.name }}</div>
         <div class="line"></div>
         <div class="content">
-          {{ peopleInfo.content }}
+          <div style="text-align: center" v-html="peopleInfo.content"></div>
         </div>
       </div>
       <div class="right-icon"></div>
@@ -46,52 +46,52 @@ const swipers = [
   {
     url: "/avatars/Leo.png",
     name: "Leo ",
-    content: `Alibaba Product Expert
-ByteDance Product Supervisor
-Former Head of Near Public Chain Asia Pacific NFT Art Community
-7 years working experience in Internet products`,
+    content: `<div>Alibaba Product Expert</div>
+              <div>ByteDance Product Supervisor</div>
+              <div>Former Head of Near Public Chain Asia Pacific NFT Art Community</div>
+              <div>7 years working experience in Internet products</div>`,
   },
   {
     url: "/avatars/Scarecrow.png",
     name: "Scarecrow",
-    content: `Senior engineer of a company in the top ten public chains by market value
-10 years experience in telecom BOSS system`,
+    content: `<div>Senior engineer of a company in the top ten public chains by market value</div>
+              <div>10 years experience in telecom BOSS system</div>`,
   },
   {
     url: "/avatars/UI.png",
     name: "Wison",
-    content: `UI Designer Expert
-8 years experience in mobile and pc UI design
-Participated in many products with millions of users`,
+    content: `<div>UI Designer Expert</div>
+              <div>8 years experience in mobile and pc UI design</div>
+              <div>Participated in many products with millions of users</div>`,
   },
   {
     url: "/avatars/architect.png",
     name: "Brough",
-    content: `Front-end architect
-Advanced Development of TRC Chain Games
-TRON Community Leader`,
+    content: `<div>Front-end architect</div>
+              <div>Advanced Development of TRC Chain Games</div>
+              <div>TRON Community Leader</div>`,
   },
   {
     url: "/avatars/expert.png",
     name: "TimeLord",
-    content: `Full-stack engineer expert
-TRON Front-End Architect
-Six-year experience in blockchain development`,
+    content: `<div>Full-stack engineer expert</div>
+              <div>TRON Front-End Architect</div>
+              <div>Six-year experience in blockchain development</div>`,
   },
   {
     url: "/avatars/NUS.png",
     name: "Phoebe",
-    content: `Master of Engineering in NUS
-Independent consultant for more than 3 years
-Serial entrepreneur`,
+    content: `<div>Master of Engineering in NUS</div>
+              <div>Independent consultant for more than 3 years</div>
+              <div>Serial entrepreneur</div>`,
   },
   {
     url: "/avatars/Robert.png",
     name: "Robert",
-    content: `Former Baidu senior researcher
-Technical director of top3 e-commerce company, responsible for advertising and transaction risk control
-Eight-year Internet development experience
-Three-year contract development experience`,
+    content: `<div>Former Baidu senior researcher</div>
+              <div>Technical director of top3 e-commerce company, responsible for advertising and transaction risk control</div>
+              <div>Eight-year Internet development experience</div>
+              <div>Three-year contract development experience</div>`,
   },
 ];
 export default {

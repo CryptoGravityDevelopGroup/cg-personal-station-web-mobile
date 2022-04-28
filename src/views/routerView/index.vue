@@ -3,25 +3,49 @@
     <div class="home-wrapper">
       <header class="header">
         <img class="logo" src="/img/img_navbar_logo.png" alt="logo" />
-        <img
-          @click="visible = true"
+        <div
           class="menu"
-          src="/img/ic_navbbar_menu.png"
-          alt="menu"
-        />
+          id="menu-btn"
+          @click="
+            () => {
+              visible = !visible;
+              if (visible) {
+                lottieReactive.btn1.playSegments([0, 45], true);
+              } else {
+                lottieReactive.btn1.playSegments([45, 90], true);
+              }
+            }
+          "
+        ></div>
       </header>
       <router-view />
     </div>
 
     <div
       class="modal-wrapper"
-      :style="{ right: visible ? 0 : '-100%' }"
-      @click.stop="visible = false"
+      :style="{ top: visible ? '56px' : '-100%' }"
+      @click.stop="
+        () => {
+          visible = false;
+          lottieReactive.btn1.playSegments([45, 90], true);
+        }
+      "
     >
       <div class="modal-content" @click.stop>
-        <div class="wrapper">
-          <img @click="visible = false" src="/img/ic_navbbar_close.png" />
-        </div>
+        <!-- <div class="wrapper">
+          <img class="logo" src="/img/img_navbar_logo.png" alt="logo" />
+          <div
+            class="menu"
+            id="menu-btn2"
+            @click="
+              () => {
+                visible = false;
+                lottieReactive.btn1.stop();
+                lottieReactive.btn2.goToAndPlay(300);
+              }
+            "
+          ></div>
+        </div> -->
         <div class="wrapper avatar">
           <img
             v-if="address"
@@ -62,17 +86,23 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
 import { useRouter } from "vue-router";
+import lottie from "lottie-web";
 import Confirm from "@/components/Confirm/index.vue";
 import { getWeb3 } from "@/utils/web3";
 import { stopMove, beginMove } from "@/utils/utils";
+import menuIcon from "@/assets/lottie/menu-icon.json";
 
 const router = useRouter();
 const web3js = ref();
 const address = ref();
 const visible = ref(false);
 const confirmVisible = ref(false);
+const lottieReactive = reactive({
+  btn1: null,
+  btn2: null,
+});
 
 const connectWallet = async () => {
   if (address.value) return;
@@ -81,6 +111,16 @@ const connectWallet = async () => {
   });
   address.value = res[0].substr(0, 8) + "..." + res[0].substr(-4, 4);
   window.sessionStorage.setItem("account", res[0]);
+};
+
+const mainLottie = () => {
+  lottieReactive.btn1 = lottie.loadAnimation({
+    container: document.getElementById("menu-btn"),
+    renderer: "svg",
+    loop: false,
+    autoplay: false,
+    animationData: menuIcon,
+  });
 };
 
 const goPage = (path) => {
@@ -113,7 +153,10 @@ const navigation = (key) => {
 onMounted(async () => {
   window.sessionStorage.clear();
   web3js.value = await getWeb3();
+  mainLottie();
 });
+
+onUnmounted(() => {});
 
 watch(
   () => visible.value,
