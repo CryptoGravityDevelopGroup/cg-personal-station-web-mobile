@@ -3,53 +3,97 @@
     <swiper
       ref="swiperRef"
       :modules="modules"
-      allowSlidePrev
-      allowSlideNext
+      :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false,
+      }"
+      :navigation="true"
       slides-per-view="auto"
       :centered-slides="true"
       :loop="true"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
+      @realIndexChange="realIndexChange"
     >
-      <swiper-slide>
-        <div class="avatar"></div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="avatar"></div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="avatar"></div>
+      <swiper-slide v-for="(v, i) in swipers" :key="i">
+        <div class="avatar">
+          <img :src="v.url" alt="" />
+        </div>
       </swiper-slide>
     </swiper>
     <div class="action-wrapper">
-      <div class="left-icon" @click="slidePrev"></div>
+      <div class="left-icon"></div>
       <div class="center-content">
-        <div class="title">Leo</div>
+        <div class="title">{{ peopleInfo.name }}</div>
         <div class="line"></div>
         <div class="content">
-          Alibaba Product Expert ByteDance Product Supervisor Former Head of
-          Near Public Chain Asia Pacific NFT Art Community 7 years working
-          experience in Internet products
+          {{ peopleInfo.content }}
         </div>
       </div>
-      <div class="right-icon" @click="slideNext"></div>
+      <div class="right-icon"></div>
     </div>
   </div>
 </template>
 <script>
-// import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue/swiper-vue.js";
+import { Swiper, SwiperSlide } from "swiper/vue/swiper-vue";
 
-// Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/modules/navigation/navigation.min.css";
 import "swiper/modules/pagination/pagination.min.css";
 import "swiper/modules/scrollbar/scrollbar.min.css";
-import { ref } from "vue";
-import { computed } from "@vue/reactivity";
+import { reactive, ref } from "vue";
+const swipers = [
+  {
+    url: "/avatars/Leo.png",
+    name: "Leo ",
+    content: `Alibaba Product Expert
+ByteDance Product Supervisor
+Former Head of Near Public Chain Asia Pacific NFT Art Community
+7 years working experience in Internet products`,
+  },
+  {
+    url: "/avatars/Scarecrow.png",
+    name: "Scarecrow",
+    content: `Senior engineer of a company in the top ten public chains by market value
+10 years experience in telecom BOSS system`,
+  },
+  {
+    url: "/avatars/UI.png",
+    name: "Wison",
+    content: `UI Designer Expert
+8 years experience in mobile and pc UI design
+Participated in many products with millions of users`,
+  },
+  {
+    url: "/avatars/architect.png",
+    name: "Brough",
+    content: `Front-end architect
+Advanced Development of TRC Chain Games
+TRON Community Leader`,
+  },
+  {
+    url: "/avatars/expert.png",
+    name: "TimeLord",
+    content: `Full-stack engineer expert
+TRON Front-End Architect
+Six-year experience in blockchain development`,
+  },
+  {
+    url: "/avatars/NUS.png",
+    name: "Phoebe",
+    content: `Master of Engineering in NUS
+Independent consultant for more than 3 years
+Serial entrepreneur`,
+  },
+  {
+    url: "/avatars/Robert.png",
+    name: "Robert",
+    content: `Former Baidu senior researcher
+Technical director of top3 e-commerce company, responsible for advertising and transaction risk control
+Eight-year Internet development experience
+Three-year contract development experience`,
+  },
+];
 export default {
   components: {
     Swiper,
@@ -57,26 +101,25 @@ export default {
   },
   setup() {
     const swiperRef = ref();
-    const swiper = computed(() => swiperRef.value);
-    const onSwiper = () => {
-      console.log(swiper.value);
+    const peopleInfo = reactive({
+      name: swipers[0].name,
+      content: swipers[0].content,
+    });
+
+    const realIndexChange = (v) => {
+      const { name, content } = swipers.find(
+        (_, index) => index === v.realIndex
+      );
+      peopleInfo.name = name;
+      peopleInfo.content = content;
     };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
-    const slideNext = () => {
-      swiper.value.slideNext();
-    };
-    const slidePrev = () => {
-      swiper.value.slidePrev();
-    };
+
     return {
-      onSwiper,
-      onSlideChange,
       swiperRef,
-      slideNext,
-      slidePrev,
-      modules: [Navigation, Pagination, Scrollbar, A11y],
+      swipers,
+      peopleInfo,
+      realIndexChange,
+      modules: [Navigation, Pagination, Scrollbar, A11y, Autoplay],
     };
   },
 };
@@ -88,6 +131,7 @@ export default {
     height: 100%;
     margin: 4px auto;
   }
+
   .swiper-slide {
     text-align: center;
     display: -webkit-box;
@@ -105,14 +149,23 @@ export default {
     transition: 300ms;
     transform: scale(0.7);
   }
+
   .swiper-slide-active,
   .swiper-slide-duplicate-active {
     transform: scale(1);
   }
+
   .swiper-slide {
     width: 170px;
     height: 170px;
   }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 38%;
+    opacity: 0;
+  }
+
   .avatar {
     width: 100%;
     height: 100%;
@@ -120,7 +173,20 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
   }
+
   .action-wrapper {
     width: 100%;
     height: 136px;
@@ -128,21 +194,20 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-top: 4px;
+
     .left-icon,
     .right-icon {
       width: 40px;
       height: 100%;
-      background-image: url("/img/ic_team_left.png");
       background-repeat: no-repeat;
       background-size: 24px;
       background-position: center;
     }
-    .right-icon {
-      background-image: url("/img/ic_team_right.png");
-    }
+
     .center-content {
       width: 100%;
       padding: 0 10px;
+
       .title {
         width: 100%;
         height: 30px;
@@ -154,6 +219,7 @@ export default {
         text-align: center;
         line-height: 30px;
       }
+
       .line {
         width: 38px;
         height: 1px;
@@ -161,6 +227,7 @@ export default {
         border: 0.5px solid rgba(177, 177, 177, 0.8);
         margin: 10px auto;
       }
+
       .content {
         width: 295px;
         height: 90px;

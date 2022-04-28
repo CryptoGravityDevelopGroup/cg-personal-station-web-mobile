@@ -16,7 +16,7 @@
     "dayjs": "^1.10.7",
     "lottie-web": "^5.9.2",
     "postcss-pxtorem": "^5.1.1",
-    "swiper": "7",
+    "swiper": "^8.1.4",
     "vue": "^3.0.0",
     "vue-i18n": "^9.2.0-beta.29",
     "vue-router": "^4.0.14",

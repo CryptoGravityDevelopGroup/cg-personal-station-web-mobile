@@ -20,20 +20,19 @@
     >
       <div class="modal-content" @click.stop>
         <div class="wrapper">
-          <img
-            @click="visible = false"
-            src="/img/ic_navbbar_close.png"
-            alt=""
-          />
+          <img @click="visible = false" src="/img/ic_navbbar_close.png" />
         </div>
         <div class="wrapper avatar">
           <img
             v-if="address"
             src="/img/img_default_user_a.png"
-            alt=""
             @click="goPage('/personalCenter')"
           />
-          <img v-else src="/img/img_default_user_d.png" alt="" />
+          <img
+            v-else
+            src="/img/img_default_user_d.png"
+            @click.stop="connectWallet"
+          />
         </div>
         <div class="wrapper menu">
           <div class="menu-item" @click="goPage('/')">Home</div>

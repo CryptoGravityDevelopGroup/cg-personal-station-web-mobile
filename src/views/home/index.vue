@@ -61,15 +61,15 @@
     </section>
     <footer class="footer">
       <div class="icon-wrapper">
-        <div class="icon">
+        <div class="icon" @click="openUrl('https://twitter.com/Gravity_NFTs')">
           <img src="/img/ic_side_twitter.png" alt="" />
           <span class="text">Twitter</span>
         </div>
-        <div class="icon">
+        <div class="icon" @click="openUrl()">
           <img src="/img/ic_side_discord.png" alt="" />
           <span class="text">discord</span>
         </div>
-        <div class="icon">
+        <div class="icon" @click="openUrl()">
           <img src="/img/ic_side_tel.png" alt="" />
           <span class="text">Telogram</span>
         </div>
@@ -77,10 +77,7 @@
       <div class="desc">© 2022 CryptoGravity. Al Rights Reserved.</div>
     </footer>
   </div>
-  <Confirm
-    v-model:visible="confirmVisible"
-    content="In development, stay tuned"
-  />
+  <Confirm v-model:visible="confirmVisible" :content="confirmContent" />
 </template>
 <script setup>
 import { onMounted, onUnmounted, reactive, ref } from "vue";
@@ -158,6 +155,9 @@ const lottieReactive = reactive({
   cwd: null,
 });
 const confirmVisible = ref(false);
+const confirmContent = ref(
+  `At present, we adopt an invitation system to improve the product. You can send us the project information and we will get in touch with you. Email: cryptogravitys@gmail.com`
+);
 
 const mainLottie = () => {
   lottieReactive.main = lottie.loadAnimation({
@@ -176,6 +176,15 @@ const mainLottie = () => {
     animationData: cwdMidJson,
     assetsPath: "/lottie/wccgd/",
   });
+};
+
+const openUrl = (url) => {
+  if (url) {
+    window.open(url);
+    return;
+  }
+  confirmVisible.value = true;
+  confirmContent.value = "Currently only available to developers";
 };
 
 onMounted(async () => {
