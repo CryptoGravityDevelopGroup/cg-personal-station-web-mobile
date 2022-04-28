@@ -156,7 +156,10 @@ onMounted(async () => {
   mainLottie();
 });
 
-onUnmounted(() => {});
+onUnmounted(() => {
+  lottieReactive.btn1.destroy();
+  lottieReactive.btn1 = null;
+});
 
 watch(
   () => visible.value,
