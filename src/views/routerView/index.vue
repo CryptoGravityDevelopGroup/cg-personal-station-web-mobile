@@ -128,6 +128,7 @@ const goPage = (path) => {
     confirmVisible.value = true;
     return;
   }
+  lottieReactive.btn1.playSegments([45, 90], true);
   visible.value = false;
   router.push(path);
 };
@@ -142,6 +143,7 @@ const changenavigationBar = async (key) => {
 };
 
 const navigation = (key) => {
+  lottieReactive.btn1.playSegments([45, 90], true);
   const PageId = document.querySelector("#" + key);
   visible.value = false;
   window.scrollTo({
