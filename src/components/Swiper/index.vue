@@ -53,7 +53,7 @@ const swipers = [
   },
   {
     url: "/avatars/Scarecrow.png",
-    name: "Scarecrow",
+    name: "Marshall.MA",
     content: `<div>Senior engineer of a company in the top ten public chains by market value</div>
               <div>10 years experience in telecom BOSS system</div>`,
   },
