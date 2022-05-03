@@ -10,9 +10,9 @@
             () => {
               visible = !visible;
               if (visible) {
-                lottieReactive.btn1.playSegments([0, 45], true);
+                lottieReactive.menu.playSegments([0, 45], true);
               } else {
-                lottieReactive.btn1.playSegments([45, 90], true);
+                lottieReactive.menu.playSegments([45, 90], true);
               }
             }
           "
@@ -27,7 +27,7 @@
       @click.stop="
         () => {
           visible = false;
-          lottieReactive.btn1.playSegments([45, 90], true);
+          lottieReactive.menu.playSegments([45, 90], true);
         }
       "
     >
@@ -40,7 +40,7 @@
             @click="
               () => {
                 visible = false;
-                lottieReactive.btn1.stop();
+                lottieReactive.menu.stop();
                 lottieReactive.btn2.goToAndPlay(300);
               }
             "
@@ -100,8 +100,7 @@ const address = ref();
 const visible = ref(false);
 const confirmVisible = ref(false);
 const lottieReactive = reactive({
-  btn1: null,
-  btn2: null,
+  menu: null,
 });
 
 const connectWallet = async () => {
@@ -118,7 +117,7 @@ const connectWallet = async () => {
 };
 
 const mainLottie = () => {
-  lottieReactive.btn1 = lottie.loadAnimation({
+  lottieReactive.menu = lottie.loadAnimation({
     container: document.getElementById("menu-btn"),
     renderer: "svg",
     loop: false,
@@ -132,7 +131,7 @@ const goPage = (path) => {
     confirmVisible.value = true;
     return;
   }
-  lottieReactive.btn1.playSegments([45, 90], true);
+  lottieReactive.menu.playSegments([45, 90], true);
   visible.value = false;
   router.push(path);
 };
@@ -147,7 +146,7 @@ const changenavigationBar = async (key) => {
 };
 
 const navigation = (key) => {
-  lottieReactive.btn1.playSegments([45, 90], true);
+  lottieReactive.menu.playSegments([45, 90], true);
   const PageId = document.querySelector("#" + key);
   visible.value = false;
   window.scrollTo({
@@ -157,14 +156,14 @@ const navigation = (key) => {
 };
 
 onMounted(async () => {
+  mainLottie();
   window.sessionStorage.clear();
   web3js.value = await getWeb3();
-  mainLottie();
 });
 
 onUnmounted(() => {
-  lottieReactive.btn1.destroy();
-  lottieReactive.btn1 = null;
+  lottieReactive.menu.destroy();
+  lottieReactive.menu = null;
 });
 
 watch(
