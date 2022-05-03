@@ -105,6 +105,10 @@ const lottieReactive = reactive({
 });
 
 const connectWallet = async () => {
+  if (typeof window.ethereum === "undefined") {
+    window.open("https://metamask.io/download/");
+    return;
+  }
   if (address.value) return;
   const res = await window.ethereum.request({
     method: "eth_requestAccounts",
