@@ -5,10 +5,7 @@
       <span class="CryptoGravity">CryptoGravity</span>
     </main>
     <section class="main-wrapper">
-      <div class="sub-title">
-        Building the next-generation intelligent application cloud service
-        platform
-      </div>
+      <div class="sub-title">Build your web3 application without coding</div>
       <div class="start-button" @click="confirmVisible = true">
         <span class="Start">Start</span>
         <img
@@ -93,13 +90,13 @@ const InfoBoxs = [
     icon: "/img/ic_intro_6.png",
     title: "Website Building",
     content:
-      "Through simple page interaction, you can build your own project website and deploy domain name",
+      "Build project website and deploy domain name through simple page interaction",
   },
   {
     icon: "/img/ic_intro_5.png",
     title: "Smart Contract",
     content:
-      "One-stop smart contract deployment and setup, easy to realize without code",
+      "Easy to realize one-stop smart contract deployment and setup without code",
   },
   {
     icon: "/img/ic_intro_4.png",
@@ -117,7 +114,7 @@ const InfoBoxs = [
     icon: "/img/ic_intro_2.png",
     title: "Database",
     content:
-      "Provide project parties with complete project data models and data storage function, and help them to better understand their project by visualizing the data",
+      "Provide complete project data models and data storage function to help you to better understand your project by visualizing the data",
   },
   {
     icon: "/img/ic_intro_1.png",

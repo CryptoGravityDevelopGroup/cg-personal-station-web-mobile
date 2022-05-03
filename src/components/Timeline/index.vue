@@ -23,8 +23,7 @@ const timelineDesc = [
   {
     title: "Q3 , 2022",
     descs: [
-      `The main network of CryptoGracity is launched, supporting website
-            construction, contract deployment, and NFT asset sales. `,
+      `Launch the main network of CryptoGracity, supporting website construction, contract deployment, and NFT asset sales. `,
       "Incubate more than 10 high-quality NFT projects.",
       `Continuous research and development to increase platform security
             and stability.`,
@@ -41,7 +40,7 @@ const timelineDesc = [
   {
     title: "Q1 , 2023",
     descs: [
-      `Successfully hatched more than 1,000 high-quality projects, and established extensive and close cooperation with artists, studios, IPs, and project parties around the world.`,
+      `Hatch more than 1,000 high-quality projects, and establish extensive and close cooperation with artists, studios, IPs, and project parties around the world.`,
       "Become a first-class web3 intelligent application cloud service platform.",
       `Lead the innovation of digital assets in the industry and explore more possibilities.`,
       `Hold offline exhibitions`,

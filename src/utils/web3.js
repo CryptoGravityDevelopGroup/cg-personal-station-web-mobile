@@ -3,6 +3,10 @@ import Web3 from "web3";
 export const getWeb3 = () => {
   return new Promise((resolve, reject) => {
     window.addEventListener("load", async () => {
+      if (typeof window.ethereum === "undefined") {
+        window.open("https://metamask.io/download/");
+        return;
+      }
       if (window.ethereum) {
         const web3 = new Web3(window.ethereum);
         try {

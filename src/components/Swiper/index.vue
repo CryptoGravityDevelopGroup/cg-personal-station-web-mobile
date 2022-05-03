@@ -46,7 +46,7 @@ const swipers = [
   {
     url: "/avatars/Leo.png",
     name: "Leo ",
-    content: `<div>Alibaba Product Expert</div>
+    content: `<div>Product expert of top 2 e-commerce company</div>
               <div>ByteDance Product Supervisor</div>
               <div>Former Head of Near Public Chain Asia Pacific NFT Art Community</div>
               <div>7 years working experience in Internet products</div>`,
@@ -88,7 +88,7 @@ const swipers = [
   {
     url: "/avatars/Robert.png",
     name: "Robert",
-    content: `<div>Former Baidu senior researcher</div>
+    content: `<div>Senior researcher of top2 search engine company</div>
               <div>Technical director of top3 e-commerce company, responsible for advertising and transaction risk control</div>
               <div>Eight-year Internet development experience</div>
               <div>Three-year contract development experience</div>`,
