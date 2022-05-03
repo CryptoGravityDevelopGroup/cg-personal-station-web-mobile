@@ -8,15 +8,33 @@
     <div class="empty-wrapper" v-else>
       <img src="/img/empty-img-gray.png" alt="" />
       <div class="no-data">No Data</div>
+      <div class="buy-tokens" @click="buyTokens">Buy tokens</div>
     </div>
     <div class="button-wrapper" v-if="list.length > 0">
       <div class="button">Redeem all</div>
     </div>
   </div>
+  <Confirm v-model:visible="confirmVisible" :content="confirmContent" />
 </template>
 <script setup>
 import { ref } from "vue";
+import Confirm from "@/components/Confirm/index.vue";
+
+const confirmVisible = ref(false);
+const confirmContent = ref(
+  `
+    <div>Follow the official twitter for the latest token developments</div>
+    <div class="confirm-icon">
+      <img src="/img/ic_side_twitter.png" alt="" />
+      <a href='https://twitter.com/Gravity_NFTs' target='_blank'>Twitter</a>
+    </div>
+  `
+);
 const list = ref([]);
+
+const buyTokens = () => {
+  confirmVisible.value = true;
+};
 </script>
 <style lang="less">
 .reddme-wrapper {
@@ -61,7 +79,7 @@ const list = ref([]);
 
 .empty-wrapper {
   width: 122px;
-  height: 135px;
+  height: 220px;
   text-align: center;
   position: absolute;
   top: 0;
@@ -76,13 +94,40 @@ const list = ref([]);
   }
 
   .no-data {
-    // width: 60px;
     height: 26px;
     opacity: 1;
     color: rgba(255, 255, 255, 1);
     font-size: 16px;
     font-weight: 400;
     font-family: "Source Han Sans CN";
+    margin: 20px 0;
+  }
+
+  .buy-tokens {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    opacity: 1;
+    background: rgba(24, 111, 242, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-family: "DM Sans";
+    text-align: center;
+    line-height: 2.9;
+  }
+}
+.confirm-icon {
+  margin-top: 16px;
+  img {
+    width: 16px;
+    height: 16px;
+  }
+  a {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: underline;
+    margin-left: 4px;
   }
 }
 </style>

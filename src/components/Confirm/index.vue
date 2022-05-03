@@ -2,7 +2,7 @@
   <teleport to="body" v-if="visible">
     <div class="Confirm">
       <div class="wrapper">
-        <div class="content">{{ content }}</div>
+        <div class="content" v-html="content"></div>
         <div class="button" @click="onOk">OK</div>
       </div>
     </div>
@@ -70,7 +70,7 @@ watch(
       height: 48px;
       border-radius: 10px;
       opacity: 1;
-      margin: 24px auto 0px auto;
+      margin: 20px auto 0px auto;
       color: white;
       font-weight: bold;
       background: rgba(24, 111, 242, 1);
