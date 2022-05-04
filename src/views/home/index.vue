@@ -60,15 +60,22 @@
       <div class="icon-wrapper">
         <div class="icon" @click="openUrl('https://twitter.com/Gravity_NFTs')">
           <img src="/img/ic_side_twitter.png" alt="" />
-          <span class="text">Twitter</span>
+          <!-- <span class="text">Twitter</span> -->
         </div>
         <div class="icon" @click="openUrl()">
           <img src="/img/ic_side_discord.png" alt="" />
-          <span class="text">discord</span>
+          <!-- <span class="text">discord</span> -->
+        </div>
+        <div
+          class="icon"
+          @click="openUrl('https://medium.com/@cryptogravitys')"
+        >
+          <img src="/img/MediumLogo.png" alt="" />
+          <!-- <span class="text">Medium</span> -->
         </div>
         <div class="icon" @click="openUrl()">
           <img src="/img/ic_side_tel.png" alt="" />
-          <span class="text">Telogram</span>
+          <!-- <span class="text">Telegram</span> -->
         </div>
       </div>
       <div class="desc">© 2022 CryptoGravity. Al Rights Reserved.</div>
