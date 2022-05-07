@@ -46,10 +46,11 @@
       <div class="title">Tokens</div>
       <div class="title-line"></div>
       <div class="cwd-mid"></div>
-      <div class="desc">
+      <!-- <div class="desc">
         <div class="text">We will officially release tokens soon</div>
         <div class="text">Follow us on Twitter for the latest news</div>
-      </div>
+      </div> -->
+      <Tokens />
     </section>
     <section class="section-wrapper teams-wrapper" id="Teams">
       <div class="title">Teams</div>
@@ -89,6 +90,7 @@ import lottie from "lottie-web";
 import Timeline from "@/components/Timeline/index.vue";
 import Swiper from "@/components/Swiper/index.vue";
 import Confirm from "@/components/Confirm/index.vue";
+import Tokens from "@/components/Tokens/index.vue";
 import { getWeb3 } from "@/utils/web3";
 import mainGtJson from "@/assets/lottie/cg_main.json";
 import cwdMidJson from "@/assets/lottie/wccgd.json";

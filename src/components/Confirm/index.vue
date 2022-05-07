@@ -3,14 +3,15 @@
     <div class="Confirm">
       <div class="wrapper">
         <div class="content" v-html="content"></div>
-        <div class="button" @click="onOk">OK</div>
+        <div class="button" v-if="!slots.buttons" @click="onOk">OK</div>
+        <slot name="buttons"></slot>
       </div>
     </div>
   </teleport>
 </template>
 
 <script setup>
-import { defineProps, defineEmits, watch } from "vue";
+import { defineProps, defineEmits, watch, useSlots, onMounted } from "vue";
 import { stopMove, beginMove } from "@/utils/utils";
 
 const props = defineProps({
@@ -25,6 +26,8 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["update:visible"]);
+
+const slots = useSlots();
 
 const onOk = () => {
   emits("update:visible", false);
