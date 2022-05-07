@@ -130,8 +130,8 @@
         </div>
       </div>
       <div class="buttons">
-        <div class="submit">Submit</div>
         <div class="cancel">Cancel</div>
+        <div class="submit">Submit</div>
       </div>
     </div>
 
@@ -194,7 +194,7 @@ import Confirm from "@/components/Confirm/index.vue";
 import { stopMove, beginMove } from "@/utils/utils";
 
 const confirmVisible = ref(false);
-const status = ref(0);
+const status = ref(3);
 
 watch(
   () => status,
