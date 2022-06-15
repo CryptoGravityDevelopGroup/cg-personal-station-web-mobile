@@ -11,20 +11,6 @@ const routes = [
         name: "home",
         component: () => import("../views/home/index.vue"),
       },
-      {
-        path: "/personalCenter",
-        name: "personalCenter",
-        component: () => import("../views/personalCenter/index.vue"),
-      },
-      {
-        path: "/docs",
-        name: "docs",
-        component: () => import("../views/docs/index.vue"),
-      },
-      {
-        path: "/:catchAll(.*)",
-        component: () => import("../views/NotFound/index.vue"),
-      },
     ],
   },
 ];

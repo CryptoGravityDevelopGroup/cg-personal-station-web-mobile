@@ -1,107 +1,16 @@
 <template>
   <div class="home-wrapper">
-    <div class="home-wrapper">
-      <header class="header">
-        <img class="logo" src="/img/img_navbar_logo.png" alt="logo" />
-        <div
-          class="menu"
-          id="menu-btn"
-          @click="
-            () => {
-              visible = !visible;
-              if (visible) {
-                lottieReactive.menu.playSegments([0, 45], true);
-              } else {
-                lottieReactive.menu.playSegments([45, 90], true);
-              }
-            }
-          "
-        ></div>
-      </header>
-      <router-view />
-    </div>
-
-    <div
-      class="modal-wrapper"
-      :style="{ top: visible ? '56px' : '-100%' }"
-      @click.stop="
-        () => {
-          visible = false;
-          lottieReactive.menu.playSegments([45, 90], true);
-        }
-      "
-    >
-      <div class="modal-content" @click.stop>
-        <!-- <div class="wrapper">
-          <img class="logo" src="/img/img_navbar_logo.png" alt="logo" />
-          <div
-            class="menu"
-            id="menu-btn2"
-            @click="
-              () => {
-                visible = false;
-                lottieReactive.menu.stop();
-                lottieReactive.btn2.goToAndPlay(300);
-              }
-            "
-          ></div>
-        </div> -->
-        <div class="wrapper avatar">
-          <img
-            v-if="address"
-            src="/img/img_default_user_a.png"
-            @click="goPage('/personalCenter')"
-          />
-          <img
-            v-else
-            src="/img/img_default_user_d.png"
-            @click.stop="connectWallet"
-          />
-        </div>
-        <div class="wrapper menu">
-          <div class="menu-item" @click="goPage('/')">Home</div>
-          <div class="menu-item" @click="changenavigationBar('Introduction')">
-            Introduction
-          </div>
-          <div class="menu-item" @click="changenavigationBar('Roadmap')">
-            Roadmap
-          </div>
-          <div class="menu-item" @click="changenavigationBar('Tokens')">
-            Tokens
-          </div>
-          <div class="menu-item" @click="changenavigationBar('Teams')">
-            Teams
-          </div>
-          <div class="menu-item" @click="goPage('/docs')">Docs</div>
-        </div>
-        <div class="connent-wallet" @click.stop="connectWallet">
-          {{ address ? address : "Connect wallet" }}
-        </div>
-      </div>
-    </div>
-    <Confirm
-      v-model:visible="confirmVisible"
-      content="In development, stay tuned"
-    />
+    <router-view />
   </div>
 </template>
 <script setup>
-import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import lottie from "lottie-web";
-import Confirm from "@/components/Confirm/index.vue";
 import { getWeb3 } from "@/utils/web3";
-import { stopMove, beginMove } from "@/utils/utils";
-import menuIcon from "@/assets/lottie/menu-icon.json";
 
 const router = useRouter();
 const web3js = ref();
 const address = ref();
-const visible = ref(false);
-const confirmVisible = ref(false);
-const lottieReactive = reactive({
-  menu: null,
-});
 
 const connectWallet = async () => {
   if (typeof window.ethereum === "undefined") {
@@ -116,62 +25,10 @@ const connectWallet = async () => {
   window.sessionStorage.setItem("account", res[0]);
 };
 
-const mainLottie = () => {
-  lottieReactive.menu = lottie.loadAnimation({
-    container: document.getElementById("menu-btn"),
-    renderer: "svg",
-    loop: false,
-    autoplay: false,
-    animationData: menuIcon,
-  });
-};
-
-const goPage = (path) => {
-  if (!path) {
-    confirmVisible.value = true;
-    return;
-  }
-  lottieReactive.menu.playSegments([45, 90], true);
-  visible.value = false;
-  router.push(path);
-};
-
-const changenavigationBar = async (key) => {
-  try {
-    navigation(key);
-  } catch (error) {
-    await router.push("/home");
-    navigation(key);
-  }
-};
-
-const navigation = (key) => {
-  lottieReactive.menu.playSegments([45, 90], true);
-  const PageId = document.querySelector("#" + key);
-  visible.value = false;
-  window.scrollTo({
-    top: PageId.offsetTop - 100,
-    behavior: "smooth",
-  });
-};
-
 onMounted(async () => {
-  mainLottie();
   window.sessionStorage.clear();
   web3js.value = await getWeb3();
 });
-
-onUnmounted(() => {
-  lottieReactive.menu.destroy();
-  lottieReactive.menu = null;
-});
-
-watch(
-  () => visible.value,
-  (v) => {
-    v ? stopMove() : beginMove();
-  }
-);
 </script>
 <style lang="less" scoped>
 @import "../home/index.less";
