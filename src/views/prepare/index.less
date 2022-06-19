@@ -1,0 +1,33 @@
+.prepare-wrapper {
+  width: 375px;
+  min-height: 100vh;
+  background: #3772ff;
+  overflow: hidden;
+  .setps-wrap {
+    margin-top: 24px;
+    & /deep/ .ant-steps-item-title {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 12px;
+    }
+    & /deep/ .ant-steps-item-tail::after {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    & /deep/ .ant-steps-item-active,
+    & /deep/ .ant-steps-item-finish {
+      .ant-steps-item-title {
+        color: rgba(255, 255, 255);
+      }
+      .ant-steps-item-tail::after {
+        background: rgba(255, 255, 255);
+      }
+    }
+  }
+  .content-wrapper {
+    height: 718px;
+    margin-top: 12px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px 16px 0 0;
+    padding: 24px;
+  }
+}

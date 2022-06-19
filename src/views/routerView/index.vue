@@ -1,5 +1,5 @@
 <template>
-  <div class="home-wrapper">
+  <div class="router-view">
     <router-view />
   </div>
 </template>
@@ -30,6 +30,4 @@ onMounted(async () => {
   web3js.value = await getWeb3();
 });
 </script>
-<style lang="less" scoped>
-@import "../home/index.less";
-</style>
+<style lang="less" scoped></style>

@@ -8,16 +8,43 @@
     height: 6px;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: #08023a;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   background: #08023a;
+  // }
 
-  &::-webkit-scrollbar-track-piece {
-    background: #2f0651;
-  }
+  // &::-webkit-scrollbar-track-piece {
+  //   background: #2f0651;
+  // }
 
   touch-action: pan-y;
 }
 
-@primary-color: #f38031; // 全局主色
-@link-color: #f38031; // 链接色
+// @primary-color: #f38031; // 全局主色
+// @link-color: #f38031; // 链接色
+.next-button {
+  width: 375px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px 16px 0px 0px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  .button {
+    width: 327px;
+    height: 48px;
+    background: #92a7df;
+    border-radius: 90px 90px 90px 90px;
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fbfcfc;
+    margin: 12px auto;
+    font-size: 16px;
+  }
+  .actived {
+    background: #3772ff;
+    opacity: 1;
+  }
+}
