@@ -22,12 +22,18 @@
       </a-step>
     </a-steps>
     <div class="content-wrapper">
-      <component :is="currentComponent" @next="next" />
+      <component
+        :is="currentComponent"
+        v-model:profiles="userData.profile"
+        v-model:qas="userData.qas"
+        @next="next"
+      />
     </div>
   </div>
 </template>
 <script>
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent, watch, onMounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 import {
   ClockCircleOutlined,
   CheckCircleOutlined,
@@ -51,6 +57,7 @@ export default defineComponent({
     TagCommentVue,
   },
   setup() {
+    const route = useRoute();
     const currentComponent = ref("LinkWalletVue");
     const current = ref(0);
     const steps = ref([
@@ -68,18 +75,50 @@ export default defineComponent({
       },
     ]);
 
+    const userData = reactive({
+      profile: {
+        name: "",
+        avatar: "",
+        aboutMe: "",
+        tags: [],
+        instagram: "",
+        twitter: "",
+        telegram: "",
+      },
+      qas: [
+        {
+          key: 1,
+          question: "",
+          answer: "",
+        },
+      ],
+    });
+
     const next = (value, index = 0) => {
       if (value) {
         currentComponent.value = value;
         current.value = index;
+        sessionStorage.setItem("userData", JSON.stringify(userData));
       }
     };
+
+    watch(
+      () => route.query,
+      (query) => {
+        currentComponent.value = query.c || "LinkWalletVue";
+      }
+    );
+
+    onMounted(() => {
+      currentComponent.value = route.query.c || "LinkWalletVue";
+    });
 
     return {
       current,
       currentComponent,
       steps,
       next,
+      userData,
     };
   },
 });

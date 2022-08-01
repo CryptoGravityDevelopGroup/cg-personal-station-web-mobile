@@ -170,10 +170,31 @@
         </a-collapse-panel>
       </a-collapse>
     </section>
+
+    <div v-if="qrVisible" class="qr-modal">
+      <div class="qr-modal-content">
+        <div class="qr-modal-header">
+          <img
+            style="width: 227px"
+            src="/img/image.png"
+            alt=""
+            @click="closeDialog"
+          />
+        </div>
+        <div style="text-align: center" @click="down">
+          <img
+            src="/img/down.png"
+            style="width: 36px; margin-top: 10px"
+            alt=""
+            srcset=""
+          />
+        </div>
+      </div>
+    </div>
   </div>
-  <Dialog v-model:visible="visible">
-    <SildBar v-if="visible" @onClose="closeDialog" />
-  </Dialog>
+  <DialogShow v-model:visible="visible">
+    <SildBar @onClose="closeDialog" @onOpenModal="onOpenModal" />
+  </DialogShow>
   <Dialog v-model:visible="profileVisible">
     <CommonBlock v-if="ProfileVue" @back="profileBack" type="x" title="Profile">
       <ProfileVue type="edit" @next="submitProfile" />
@@ -190,6 +211,7 @@ import { ref, watch } from "vue";
 import { useElementVisibility } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import Dialog from "@/components/Dialog/index.vue";
+import DialogShow from "@/components/DialogShow/index.vue";
 import SildBar from "./components/SildBar.vue";
 import CommonBlock from "@/components/CommonBlock/index.vue";
 import ProfileVue from "../prepare/components/Profile.vue";
@@ -202,6 +224,7 @@ const targetIsVisible = useElementVisibility(target);
 const visible = ref(false);
 const profileVisible = ref(false);
 const qaVisible = ref(false);
+const qrVisible = ref(false);
 
 const goPage = (path) => {
   router.push(path);
@@ -228,6 +251,14 @@ const profileBack = () => {
   profileVisible.value = false;
 };
 
+const onOpenModal = () => {
+  qrVisible.value = true;
+};
+
+const down = () => {
+  qrVisible.value = false;
+};
+
 const submitProfile = () => {
   profileVisible.value = false;
 };
@@ -242,6 +273,41 @@ watch(
   }
 );
 </script>
-<style lang="less" scoped>
+<style lang="less">
 @import "./index.less";
+.qr-modal {
+  width: 375px;
+  height: 100%;
+  background: rgba(15, 18, 41, 0.65);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // .qr-code {
+  //   width: 200px;
+  //   height: 200px;
+  //   background: #fff;
+  //   border-radius: 20px 20px 20px 20px;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   .qr-modal-body {
+  //     width: 100%;
+  //     height: 100%;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //   }
+  //   .qr-modal-close {
+  //     margin-top: 10px;
+  //     img {
+  //       width: 12px;
+  //       height: 12px;
+  //     }
+  //   }
+  // }
+}
 </style>

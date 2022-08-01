@@ -1,26 +1,31 @@
 <template>
   <div class="profile">
     <div class="avatar">
-      <a-avatar :size="52"></a-avatar>
+      <a-avatar :size="52" :src="profile.avatar"></a-avatar>
       <div class="updated-button" @click="updateAvatar">修改头像</div>
     </div>
     <div class="form-item">
       <div class="label">Name</div>
-      <a-input class="field" />
+      <a-input
+        class="field"
+        v-model:value="profile.name"
+        placeholder="若您已购买ens域名，推荐使用ens域名"
+      />
     </div>
     <div class="form-item">
       <div class="label">About Me</div>
-      <a-textarea :auto-size="{ minRows: 2, maxRows: 5 }" class="field" />
+      <a-textarea
+        v-model:value="profile.aboutMe"
+        :auto-size="{ minRows: 2, maxRows: 5 }"
+        :max-length="300"
+        class="field"
+      />
     </div>
     <div class="form-item">
       <div class="label">Tags</div>
       <div class="field-tag">
         <div class="boxs">
-          <a-tag>你好</a-tag>
-          <a-tag>你好</a-tag>
-          <a-tag>你好</a-tag>
-          <a-tag>你好</a-tag>
-          <a-tag>你好你好你好</a-tag>
+          <a-tag v-for="(v, i) in profile.tags" :key="i">{{ v }}</a-tag>
         </div>
         <div class="add" @click="selectTag">
           <img src="/img/e-add.png" alt="" />
@@ -29,7 +34,7 @@
     </div>
     <div class="form-item">
       <div class="label">Instagram</div>
-      <a-input class="field">
+      <a-input v-model:value="profile.instagram" class="field">
         <template #suffix>
           <InstagramOutlined />
         </template>
@@ -37,7 +42,7 @@
     </div>
     <div class="form-item">
       <div class="label">Twitter</div>
-      <a-input class="field">
+      <a-input v-model:value="profile.twitter" class="field">
         <template #suffix>
           <TwitterOutlined />
         </template>
@@ -45,7 +50,7 @@
     </div>
     <div class="form-item">
       <div class="label">Telegram</div>
-      <a-input class="field">
+      <a-input v-model:value="profile.telegram" class="field">
         <template #suffix>
           <img src="/img/telegram-icon.png" alt="" />
         </template>
@@ -61,26 +66,33 @@
   </div>
 
   <Dialog v-model:visible="selectAvatarVisible">
-    <SelectAvatar @back="selectAvatarBack" />
+    <SelectAvatar :avatar="profile.avatar" @back="selectAvatarBack" />
   </Dialog>
   <Dialog v-model:visible="selectTagVisible">
-    <TagComment @back="selectTagBack" />
+    <TagComment :tags="profile.tags" @back="selectTagBack" />
   </Dialog>
 </template>
 <script setup>
-import { defineEmits, ref, defineProps } from "vue";
+import { defineEmits, ref, defineProps, reactive } from "vue";
 import { InstagramOutlined, TwitterOutlined } from "@ant-design/icons-vue";
 import Dialog from "@/components/Dialog/index.vue";
 import SelectAvatar from "./SelectAvatar.vue";
 import TagComment from "./TagComment.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
   type: {
     default: "create",
   },
+  profiles: {
+    default: () => ({}),
+  },
 });
 
-const emits = defineEmits(["next"]);
+const emits = defineEmits(["next", "update:data"]);
+
+const profile = reactive(props.profiles);
 
 const selectAvatarVisible = ref(false);
 const selectTagVisible = ref(false);
@@ -89,6 +101,7 @@ const updateAvatar = () => {
   selectAvatarVisible.value = true;
 };
 const selectAvatarBack = (v) => {
+  profile.avatar = v;
   selectAvatarVisible.value = false;
 };
 
@@ -96,11 +109,20 @@ const selectTag = () => {
   selectTagVisible.value = true;
 };
 const selectTagBack = (v) => {
+  profile.tags = v;
   selectTagVisible.value = false;
 };
 
 const next = () => {
+  sessionStorage.setItem("profile", JSON.stringify(profile));
   emits("next", "QAVue");
+  emits("update:data", profile);
+  router.push({
+    path: "/prepare",
+    query: {
+      c: "QAVue",
+    },
+  });
 };
 
 const done = () => {
@@ -154,6 +176,7 @@ const done = () => {
       border-radius: 10px;
       background-color: white;
       .boxs {
+        width: calc(100% - 32px);
         overflow: hidden;
         .ant-tag {
           min-width: 44px;
@@ -176,6 +199,7 @@ const done = () => {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 8px;
         img {
           width: 16px;
           height: 16px;

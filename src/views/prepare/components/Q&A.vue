@@ -8,13 +8,17 @@
             <img src="/img/delete-forever.png" alt="" />
           </div>
         </div>
-        <a-input class="field" />
+        <a-input v-model:value="v.question" class="field" />
       </div>
       <div class="q">
         <div class="q-label">
           <div class="label">answer</div>
         </div>
-        <a-textarea :auto-size="{ minRows: 2, maxRows: 5 }" class="field" />
+        <a-textarea
+          v-model:value="v.answer"
+          :auto-size="{ minRows: 2, maxRows: 5 }"
+          class="field"
+        />
       </div>
     </div>
     <div class="add-button" @click="add">
@@ -31,22 +35,23 @@
 <script setup>
 import { defineEmits, ref, defineProps } from "vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
+
 import { nanoid } from "nanoid";
-const emits = defineEmits(["next"]);
+const router = useRouter();
+
+const emits = defineEmits(["next", "update:qas"]);
 
 const props = defineProps({
   type: {
     default: "create",
   },
+  qas: {
+    default: () => [],
+  },
 });
 
-const lists = ref([
-  {
-    key: nanoid(),
-    question: "",
-    answer: "",
-  },
-]);
+const lists = ref(props.qas);
 const add = () => {
   lists.value.push({
     key: nanoid(),
@@ -61,6 +66,13 @@ const remove = (key) => {
 const next = () => {
   if (props.type === "create") {
     emits("next", "CompleteVue");
+    emits("update:qas", lists.value);
+    router.push({
+      path: "/prepare",
+      query: {
+        c: "CompleteVue",
+      },
+    });
   } else {
     emits("next");
   }

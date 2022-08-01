@@ -15,6 +15,8 @@
 <script setup>
 import { onMounted, ref, defineEmits } from "vue";
 import { LoadingOutlined } from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const emits = defineEmits(["next"]);
 const address = ref();
@@ -39,6 +41,12 @@ onMounted(async () => {
 const next = () => {
   if (address.value) {
     emits("next", "ProfileVue");
+    router.push({
+      path: "/prepare",
+      query: {
+        c: "ProfileVue",
+      },
+    });
   }
 };
 </script>

@@ -17,7 +17,12 @@
 import { useRouter } from "vue-router";
 const router = useRouter();
 const getStart = () => {
-  router.push("/prepare");
+  router.push({
+    path: "/prepare",
+    query: {
+      c: "LinkWalletVue",
+    },
+  });
 };
 </script>
 <style lang="less" scoped>

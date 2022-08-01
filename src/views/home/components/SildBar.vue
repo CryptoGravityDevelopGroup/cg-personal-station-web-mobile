@@ -17,6 +17,10 @@
         <img src="/img/ic_menu_qa.png" alt="" />
         <div class="name">编辑 Q&A</div>
       </div>
+      <div class="menu-item" @click="openModal">
+        <img src="/img/barcode.png" alt="" />
+        <div class="name">我的二维码</div>
+      </div>
     </div>
     <div class="button" @click="Disconnect">Disconnect</div>
   </div>
@@ -24,6 +28,11 @@
 <script setup>
 import { defineEmits } from "vue";
 const emits = defineEmits("onClose");
+
+const openModal = () => {
+  emits("onClose");
+  emits("onOpenModal");
+};
 
 const close = () => {
   emits("onClose");

@@ -1,19 +1,47 @@
 <template>
   <CommonBlock title="请选择头像" @back="back">
     <div class="avatar-list">
-      <div class="avatar-box" v-for="v in 10" :key="v" @click="onSelect(v)">
-        <img src="/img/Secondary_small.png" v-if="selected === v" />
+      <div
+        class="avatar-box"
+        :style="{
+          backgroundImage: `url(${avatar})`,
+        }"
+        v-for="avatar in avatars"
+        :key="avatar"
+        @click="onSelect(avatar)"
+      >
+        <img src="/img/Secondary_small.png" v-if="selected === avatar" />
       </div>
     </div>
     <div class="button" @click="Ok">Ok</div>
   </CommonBlock>
 </template>
 <script setup>
-import { defineEmits, ref } from "vue";
+import { defineEmits, defineProps, ref } from "vue";
 import CommonBlock from "@/components/CommonBlock/index.vue";
+
+const props = defineProps({
+  avatar: {
+    default: "/avatars/avatar01.png",
+  },
+});
+
 const emits = defineEmits(["back"]);
 
-const selected = ref();
+const avatars = ref([
+  "/avatars/avatar01.png",
+  "/avatars/avatar02.png",
+  "/avatars/avatar03.png",
+  "/avatars/avatar04.png",
+  "/avatars/avatar05.png",
+  "/avatars/avatar06.png",
+  "/avatars/avatar07.png",
+  "/avatars/avatar08.png",
+  "/avatars/avatar09.png",
+]);
+
+const selected = ref(props.avatar);
+
 const onSelect = (v) => {
   selected.value = v;
 };

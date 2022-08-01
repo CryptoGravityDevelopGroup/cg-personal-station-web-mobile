@@ -6,6 +6,7 @@
         v-model:value="value"
         mode="tags"
         style="width: 100%"
+        :open="false"
         :token-separators="[',']"
         placeholder="多个标签请用回车或者逗号分隔"
       ></a-select>
@@ -26,8 +27,15 @@
   </CommonBlock>
 </template>
 <script setup>
-import { defineEmits, ref } from "vue";
+import { defineEmits, defineProps, ref } from "vue";
 import CommonBlock from "@/components/CommonBlock/index.vue";
+
+const props = defineProps({
+  tags: {
+    default: [],
+  },
+});
+
 const emits = defineEmits(["back"]);
 
 const recommendedTags = ref([
@@ -42,7 +50,7 @@ const recommendedTags = ref([
   "blockedlunation",
 ]);
 
-const value = ref([]);
+const value = ref(props.tags);
 
 const onSelect = (v) => {
   if (value.value.includes(v)) return;
@@ -50,7 +58,6 @@ const onSelect = (v) => {
 };
 
 const Ok = () => {
-  console.log(value.value);
   emits("back", value.value);
 };
 
